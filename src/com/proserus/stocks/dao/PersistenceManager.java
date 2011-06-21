@@ -45,7 +45,7 @@ public class PersistenceManager {
 			try{
 				em = Persistence.createEntityManagerFactory("jpaDemo").createEntityManager();
 			} catch (Throwable e) {
-				//ignore
+				System.out.println(e);
 			}
 		}
 		return em;
