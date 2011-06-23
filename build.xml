@@ -135,6 +135,13 @@
 		</jar>
 
 
+<jar destfile="${lib.dir}/../StockPortfolioBO_src_${version}_${timestamp}.jar" basedir="${src.dir}">
+<manifest>
+      <attribute name="Built-By" value="Alex Belisle Turcot"/>
+      <attribute name="Implementation-Vendor" value="code.google.com/p/stock-portfolio-manager"/>
+      <attribute name="Implementation-Title" value="Stocks Portfolio Manager"/>
+      <attribute name="Implementation-Version" value="${version} - ${timestamp}"/> 
+</manifest></jar>
 
 
 	</target>
