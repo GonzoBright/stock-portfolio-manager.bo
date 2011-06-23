@@ -9,7 +9,10 @@ abstract public class ObservableModel extends Observable {
 
 	@Override
 	final public synchronized void addObserver(Observer o) {
-	    super.addObserver(o);
-	    o.update(this, null);
+		super.addObserver(o);
+
+		// Kind of a cheat to make sure that after a new observer is added,
+		// he next notifyObserver is actually really sent out
+		setChanged();
 	}
 }
