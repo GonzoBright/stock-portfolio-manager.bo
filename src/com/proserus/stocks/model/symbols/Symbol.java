@@ -96,6 +96,17 @@ public class Symbol extends PersistentModel implements Comparable {
 	
 	private CurrencyEnum currency = CurrencyEnum.valueOf(Currency.getInstance(Locale.getDefault()).toString());
 
+	private SectorEnum sector;
+	
+	
+	public SectorEnum getSector() {
+		return sector;
+	}
+
+	public void setSector(SectorEnum sector) {
+		this.sector = sector;
+	}
+
 	public Symbol() {
 		// for JPA
 	}
