@@ -100,6 +100,9 @@ public class Symbol extends PersistentModel implements Comparable {
 	
 	
 	public SectorEnum getSector() {
+		if (null == this.sector) {
+			return SectorEnum.UNKNOWN;
+		}
 		return sector;
 	}
 
