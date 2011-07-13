@@ -8,8 +8,8 @@ version="1.0">
 <provider>org.hibernate.ejb.HibernatePersistence</provider> 
 <properties> 
 <property name="hibernate.archive.autodetection" value="class" /> 
-<property name="hibernate.show_sql" value="true" /> 
-<property name="hibernate.format_sql" value="true" /> 
+<property name="hibernate.show_sql" value="false" /> 
+<property name="hibernate.format_sql" value="false" /> 
 <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> 
 <property name="hibernate.connection.url" value="jdbc:hsqldb:file:.\\data\\db;shutdown=true" /> 
 <property name="hibernate.connection.username" value="sa" /> 

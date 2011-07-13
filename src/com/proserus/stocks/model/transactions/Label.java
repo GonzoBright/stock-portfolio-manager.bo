@@ -17,7 +17,8 @@ import com.proserus.stocks.model.common.PersistentModel;
 
 @Entity
 @NamedQueries( { @NamedQuery(name = "label.findAll", query = "SELECT s FROM Label s"),
-        @NamedQuery(name = "label.findByName", query = "SELECT s FROM Label s WHERE label = :label") })
+        @NamedQuery(name = "label.findByName", query = "SELECT s FROM Label s WHERE label = :label"),
+        @NamedQuery(name = "label.findSubLabels", query = "SELECT s FROM Label s WHERE label in (:labels)") })
 public class Label extends PersistentModel implements Comparable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)

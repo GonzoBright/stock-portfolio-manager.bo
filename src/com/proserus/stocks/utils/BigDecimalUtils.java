@@ -13,10 +13,14 @@ public class BigDecimalUtils {
 			return null;
 		}
 		
-		if(value.precision() <= 5){
-			return value;
-		}
-		return value.setScale(5,RoundingMode.HALF_EVEN);
+//		if(value.precision() <= 5){
+//			return value;
+//		}
+		return value.setScale(5,RoundingMode.HALF_EVEN).stripTrailingZeros();
+	}
+	
+	static public String getString(BigDecimal value){
+		return setDecimalWithScale(value).toString();
 	}
 	
 }

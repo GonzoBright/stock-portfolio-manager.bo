@@ -37,20 +37,19 @@ import com.proserus.stocks.utils.BigDecimalUtils;
 public class Transaction extends PersistentModel{
 	public static String IN_LABELS = "in elements(t.labels)";
 
+	private static final String SEMICOLON_STR = ";";
+
+	private static final String YYYY_M_MDD = "yyyyMMdd";
+
+	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
+	//Add constraint for min 0
+	private BigDecimal commission;
+	//Add constraint to check that the date is before Today (sysdate)
+	private Date date;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
-
-	public Integer getId() {
-		return id;
-	}
-
-	private static final String YYYY_M_MDD = "yyyyMMdd";
-	private static final String SEMICOLON_STR = ";";
-
-	public Transaction() {
-		// for JPA
-	}
 
 	@ManyToMany( 
 			targetEntity=Label.class, 
@@ -64,49 +63,55 @@ public class Transaction extends PersistentModel{
 
 	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
 	//Add constraint for min 0
-	private BigDecimal quantity;
-
-	@Column(nullable = false)
-	private TransactionType type;
-
-	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
-	//Add constraint for min 0
-	private BigDecimal commission;
-
-	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
-	//Add constraint for min 0
 	private BigDecimal price;
+
+	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
+	//Add constraint for min 0
+	private BigDecimal quantity;
 
 	@ManyToOne(cascade = CascadeType.ALL, optional = false)
 	//TODO Symbol ? @Column(nullable = false)
 	private Symbol symbol;
 
-	
-	public Symbol getSymbol() {
-		return symbol;
+	@Column(nullable = false)
+	private TransactionType type;
+
+	public Transaction() {
+		// for JPA
 	}
 
-	//Add constraint to check that the date is before Today (sysdate)
-	private Date date;
+	//TODO Maybe the same label can be set twice 
+	public void addLabel(Label label) {
+		if (label == null) {
+			throw new NullPointerException();
+		}
 
-	public void setDate(Date date) {
-		this.date = date;
+		if (label.getName().isEmpty()) {
+			throw new IllegalArgumentException();
+		}
+
+		this.labels.add(label);
+		label.addTransaction(this);
 	}
-	
-	public void setDateTime(DateTime date) {
-		this.date = date.toDate();
-	}
-	
-	public DateTime getDateTime() {
-		return new DateTime(date);
+
+	public BigDecimal getCommission() {
+		return commission;
 	}
 
 	public Date getDate() {
 		return date;
 	}
+	
+	public DateTime getDateTime() {
+		return new DateTime(date);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
 
-	public TransactionType getType() {
-		return type;
+	public Collection<Label> getLabelsValues() {
+		return labels;
 	}
 
 	public BigDecimal getPrice() {
@@ -117,8 +122,41 @@ public class Transaction extends PersistentModel{
 		return quantity;
 	}
 
-	public BigDecimal getCommission() {
-		return commission;
+	public Symbol getSymbol() {
+		return symbol;
+	}
+
+	public TransactionType getType() {
+		return type;
+	}
+
+	public void removeLabel(Label label) {
+		if(label == null){
+			throw new NullPointerException();
+		}
+		
+		if(label.getName().isEmpty()){
+			throw new IllegalArgumentException();
+		}
+		
+		labels.remove(label);
+		label.removeTransaction(this);
+	}
+
+	public void setCommission(BigDecimal commission) {
+		if (commission == null) {
+			throw new NullPointerException();
+		}
+		
+		this.commission = BigDecimalUtils.setDecimalWithScale(commission);
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public void setDateTime(DateTime date) {
+		this.date = date.toDate();
 	}
 
 	//TODO Maybe the same label can be set twice
@@ -141,48 +179,6 @@ public class Transaction extends PersistentModel{
 		}
 	}
 
-	//TODO Maybe the same label can be set twice 
-	public void addLabel(Label label) {
-		if (label == null) {
-			throw new NullPointerException();
-		}
-
-		if (label.getName().isEmpty()) {
-			throw new IllegalArgumentException();
-		}
-
-		this.labels.add(label);
-		label.addTransaction(this);
-	}
-
-	public void setType(TransactionType type) {
-		if (type == null) {
-			throw new NullPointerException();
-		}
-		this.type = type;
-	}
-
-	public void removeLabel(Label label) {
-		if(label == null){
-			throw new NullPointerException();
-		}
-		
-		if(label.getName().isEmpty()){
-			throw new IllegalArgumentException();
-		}
-		
-		labels.remove(label);
-		label.removeTransaction(this);
-	}
-
-	public void setSymbol(Symbol symbol) {
-		if (symbol == null) {
-			throw new NullPointerException();
-		}
-
-		this.symbol = symbol;
-	}
-
 	public void setPrice(BigDecimal price) {
 		if (price == null) {
 			throw new NullPointerException();
@@ -197,16 +193,19 @@ public class Transaction extends PersistentModel{
 		this.quantity = BigDecimalUtils.setDecimalWithScale(quantity);
 	}
 
-	public void setCommission(BigDecimal commission) {
-		if (commission == null) {
+	public void setSymbol(Symbol symbol) {
+		if (symbol == null) {
 			throw new NullPointerException();
 		}
-		
-		this.commission = BigDecimalUtils.setDecimalWithScale(commission);
+
+		this.symbol = symbol;
 	}
 
-	public Collection<Label> getLabelsValues() {
-		return labels;
+	public void setType(TransactionType type) {
+		if (type == null) {
+			throw new NullPointerException();
+		}
+		this.type = type;
 	}
 
 	@Override
