@@ -37,8 +37,7 @@ public class SectorAnalysisImpl implements SectorAnalysis {
 
 	@Override
 	public void setTechnologyMarketValue(BigDecimal value) {
-		this.technologyMarketValue = value
-
+		this.technologyMarketValue = value;
 	}
 
 }
