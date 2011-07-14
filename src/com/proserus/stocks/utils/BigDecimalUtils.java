@@ -16,11 +16,21 @@ public class BigDecimalUtils {
 //		if(value.precision() <= 5){
 //			return value;
 //		}
+		
+		//TODO Should we let the view display the complete numbers ??
 		return value.setScale(5,RoundingMode.HALF_EVEN).stripTrailingZeros();
 	}
 	
 	static public String getString(BigDecimal value){
 		return setDecimalWithScale(value).toString();
+	}
+	
+	public static BigDecimal stringToBigDecimal(String value){
+		try {
+			return new BigDecimal(value);
+		} catch (NumberFormatException e) {
+			return BigDecimal.ZERO;
+		}
 	}
 	
 }
