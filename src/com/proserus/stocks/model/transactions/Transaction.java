@@ -69,7 +69,7 @@ public class Transaction extends PersistentModel{
 	//Add constraint for min 0
 	private BigDecimal quantity;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, optional = false)
 	//TODO Symbol ? @Column(nullable = false)
 	private Symbol symbol;
 
