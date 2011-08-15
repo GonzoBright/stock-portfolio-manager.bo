@@ -11,14 +11,16 @@ public interface Analysis extends CurrencyAnalysis, SymbolAnalysis {
 
 	void setQuantity(BigDecimal value);
 
-	void setCost(BigDecimal value);
+	void setTotalCost(BigDecimal value);
+	
+	void setCostBasis(BigDecimal value);
 
 	void setAveragePrice(BigDecimal value);
 
 	void setCommission(BigDecimal value);
 
 	void setCurrency(CurrencyEnum currency);
-
+	
 	void setDividend(BigDecimal value);
 
 	void setDividendYield(BigDecimal value);

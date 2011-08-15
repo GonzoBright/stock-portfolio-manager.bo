@@ -14,7 +14,8 @@ public class AnalysisImpl implements Analysis {
 	private BigDecimal capitalGain;
 	private BigDecimal capitalGainPercent;
 	private BigDecimal commission;
-	private BigDecimal cost;
+	private BigDecimal totalCost;
+	private BigDecimal costBasis;
 	private CurrencyEnum currency = null;
 	private BigDecimal dividend;
 	private BigDecimal dividendYield;
@@ -95,17 +96,17 @@ public class AnalysisImpl implements Analysis {
 		return commission;
 	}
 
-	public BigDecimal getCost() {
-		return cost;
-	}
-
 	public CurrencyEnum getCurrency() {
 		return currency;
 	}
 
 	@Override
-	public BigDecimal getCurrentCost() {
-		return cost;
+	public BigDecimal getTotalCost() {
+		return totalCost;
+	}
+	
+	public BigDecimal getCostBasis() {
+		return costBasis;
 	}
 
 	@Override
@@ -191,8 +192,13 @@ public class AnalysisImpl implements Analysis {
 	}
 
 	@Override
-	public void setCost(BigDecimal cost) {
-		this.cost = cost;
+	public void setTotalCost(BigDecimal totalCost) {
+		this.totalCost = totalCost;
+	}
+	
+	@Override
+	public void setCostBasis(BigDecimal costBasis) {
+		this.costBasis = costBasis;
 	}
 
 	public void setCurrency(CurrencyEnum currency) {
@@ -276,7 +282,7 @@ public class AnalysisImpl implements Analysis {
 		sb.append(", CapGain:" + BigDecimalUtils.setDecimalWithScale(capitalGain));
 		sb.append(", CapGainPrc:" + BigDecimalUtils.setDecimalWithScale(capitalGainPercent));
 		sb.append(", Comm:" + BigDecimalUtils.setDecimalWithScale(commission));
-		sb.append(", Cost:" + BigDecimalUtils.setDecimalWithScale(cost));
+		sb.append(", Cost:" + BigDecimalUtils.setDecimalWithScale(totalCost));
 		sb.append(", Cur:" + currency);
 		sb.append(", Div:" + BigDecimalUtils.setDecimalWithScale(dividend));
 		sb.append(", DivYld:" + BigDecimalUtils.setDecimalWithScale(dividendYield));
