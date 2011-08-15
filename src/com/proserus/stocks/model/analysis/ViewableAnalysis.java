@@ -19,7 +19,9 @@ public interface ViewableAnalysis {
 
 	BigDecimal getQuantity();
 
-	BigDecimal getCurrentCost();
+	BigDecimal getTotalCost();
+	
+	BigDecimal getCostBasis();
 
 	BigDecimal getCommission();
 

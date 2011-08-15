@@ -18,7 +18,7 @@ public class BigDecimalUtils {
 //		}
 		
 		//TODO Should we let the view display the complete numbers ??
-		return value.setScale(5,RoundingMode.HALF_EVEN).stripTrailingZeros();
+		return value.setScale(5,RoundingMode.HALF_EVEN);
 	}
 	
 	static public String getString(BigDecimal value){
