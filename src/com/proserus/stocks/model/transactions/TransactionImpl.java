@@ -35,7 +35,6 @@ import com.proserus.stocks.utils.BigDecimalUtils;
         @NamedQuery(name = "transaction.findMinDate", query = "SELECT min(date) FROM Transaction t")
         })
 public class TransactionImpl extends PersistentModel implements Transaction{
-	public static String IN_LABELS = "in elements(t.labels)";
 
 	private static final String SEMICOLON_STR = ";";
 
@@ -52,14 +51,14 @@ public class TransactionImpl extends PersistentModel implements Transaction{
 	private Integer id;
 
 	@ManyToMany( 
-			targetEntity=LabelImpl.class, 
+			targetEntity=LabelImpl.class, //TODO or Label.class
 			cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinTable(
 			name = "TRANSACTION_LABEL", 
 			joinColumns =@JoinColumn(name = "transactionId"),
 			inverseJoinColumns = @JoinColumn(name = "labelId")
 		)
-	private Collection<LabelImpl> labels = new ArrayList<LabelImpl>();
+	private Collection<Label> labels = new ArrayList<Label>();
 
 	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
 	//Add constraint for min 0
@@ -85,7 +84,7 @@ public class TransactionImpl extends PersistentModel implements Transaction{
      * @see com.proserus.stocks.model.transactions.Transaction#addLabel(com.proserus.stocks.model.transactions.Label)
      */
 	@Override
-    public void addLabel(LabelImpl label) {
+    public void addLabel(Label label) {
 		if (label == null) {
 			throw new NullPointerException();
 		}
@@ -134,7 +133,7 @@ public class TransactionImpl extends PersistentModel implements Transaction{
      * @see com.proserus.stocks.model.transactions.Transaction#getLabelsValues()
      */
 	@Override
-    public Collection<LabelImpl> getLabelsValues() {
+    public Collection<Label> getLabelsValues() {
 		return labels;
 	}
 
@@ -221,7 +220,7 @@ public class TransactionImpl extends PersistentModel implements Transaction{
      * @see com.proserus.stocks.model.transactions.Transaction#setLabels(java.util.Collection)
      */
 	@Override
-    public void setLabels(Collection<LabelImpl> labels) {
+    public void setLabels(Collection<Label> labels) {
 		if (labels == null || labels.contains(null)) {
 			throw new NullPointerException();
 		}
@@ -234,7 +233,7 @@ public class TransactionImpl extends PersistentModel implements Transaction{
 			label.removeTransaction(this);
 		}
 		this.labels.clear();
-		for (LabelImpl label : labels) {
+		for (Label label : labels) {
 			addLabel(label);
 		}
 	}

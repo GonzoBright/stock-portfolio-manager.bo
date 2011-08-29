@@ -47,13 +47,13 @@ public class LabelImpl extends PersistentModel implements Comparable, Label {
 	        mappedBy = "labels",
 	        targetEntity = TransactionImpl.class
 	    )
-	private Collection<TransactionImpl> transactions = new ArrayList<TransactionImpl>();
+	private Collection<Transaction> transactions = new ArrayList<Transaction>();
 
 	/* (non-Javadoc)
      * @see com.proserus.stocks.model.transactions.Label#setTransactions(java.util.Collection)
      */
 	@Override
-    public void setTransactions(Collection<TransactionImpl> transactions) {
+    public void setTransactions(Collection<Transaction> transactions) {
 		this.transactions = transactions;
 	}
 
@@ -62,7 +62,7 @@ public class LabelImpl extends PersistentModel implements Comparable, Label {
      * @see com.proserus.stocks.model.transactions.Label#addTransaction(com.proserus.stocks.model.transactions.TransactionImpl)
      */
 	@Override
-    public void addTransaction(TransactionImpl t) {
+    public void addTransaction(Transaction t) {
 		if (!transactions.contains(t)) {
 			transactions.add(t);
 		} else {
@@ -82,7 +82,7 @@ public class LabelImpl extends PersistentModel implements Comparable, Label {
      * @see com.proserus.stocks.model.transactions.Label#getTransactions()
      */
 	@Override
-    public Collection<TransactionImpl> getTransactions() {
+    public Collection<Transaction> getTransactions() {
 		return transactions;
 	}
 
