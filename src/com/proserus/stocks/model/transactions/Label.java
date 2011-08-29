@@ -6,14 +6,14 @@ public interface Label {
 
 	public abstract Integer getId();
 
-	public abstract void setTransactions(Collection<TransactionImpl> transactions);
+	public abstract void setTransactions(Collection<Transaction> transactions);
 
 	//TODO Maybe the same transaction is set...
-	public abstract void addTransaction(TransactionImpl t);
+	public abstract void addTransaction(Transaction t);
 
 	public abstract void removeTransaction(Transaction t);
 
-	public abstract Collection<TransactionImpl> getTransactions();
+	public abstract Collection<Transaction> getTransactions();
 
 	public abstract void setName(String name);
 
