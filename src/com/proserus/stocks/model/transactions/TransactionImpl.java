@@ -26,7 +26,7 @@ import com.proserus.stocks.model.symbols.Symbol;
 import com.proserus.stocks.utils.BigDecimalUtils;
 
 
-@Entity
+@Entity(name="Transaction")
 @NamedQueries( {
         @NamedQuery(name = "transaction.findAll", query = "SELECT t FROM Transaction t"),
         @NamedQuery(name = "transaction.findAllBySymbol", query = "SELECT t FROM Transaction t WHERE symbol_id = :symbolId"),
@@ -34,7 +34,7 @@ import com.proserus.stocks.utils.BigDecimalUtils;
         @NamedQuery(name = "transaction.findAllByLabel", query = "SELECT t FROM Transaction t WHERE :label in elements(t.labels)"),
         @NamedQuery(name = "transaction.findMinDate", query = "SELECT min(date) FROM Transaction t")
         })
-public class Transaction extends PersistentModel{
+public class TransactionImpl extends PersistentModel implements Transaction{
 	public static String IN_LABELS = "in elements(t.labels)";
 
 	private static final String SEMICOLON_STR = ";";
@@ -52,14 +52,14 @@ public class Transaction extends PersistentModel{
 	private Integer id;
 
 	@ManyToMany( 
-			targetEntity=Label.class, 
+			targetEntity=LabelImpl.class, 
 			cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinTable(
 			name = "TRANSACTION_LABEL", 
 			joinColumns =@JoinColumn(name = "transactionId"),
 			inverseJoinColumns = @JoinColumn(name = "labelId")
 		)
-	private Collection<Label> labels = new ArrayList<Label>();
+	private Collection<LabelImpl> labels = new ArrayList<LabelImpl>();
 
 	@Column(nullable = false, columnDefinition="DECIMAL(38,8)")
 	//Add constraint for min 0
@@ -76,12 +76,16 @@ public class Transaction extends PersistentModel{
 	@Column(nullable = false)
 	private TransactionType type;
 
-	public Transaction() {
+	public TransactionImpl() {
 		// for JPA
 	}
 
 	//TODO Maybe the same label can be set twice 
-	public void addLabel(Label label) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#addLabel(com.proserus.stocks.model.transactions.Label)
+     */
+	@Override
+    public void addLabel(LabelImpl label) {
 		if (label == null) {
 			throw new NullPointerException();
 		}
@@ -94,43 +98,83 @@ public class Transaction extends PersistentModel{
 		label.addTransaction(this);
 	}
 
-	public BigDecimal getCommission() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getCommission()
+     */
+	@Override
+    public BigDecimal getCommission() {
 		return commission;
 	}
 
-	public Date getDate() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getDate()
+     */
+	@Override
+    public Date getDate() {
 		return date;
 	}
 	
-	public DateTime getDateTime() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getDateTime()
+     */
+	@Override
+    public DateTime getDateTime() {
 		return new DateTime(date);
 	}
 	
-	public Integer getId() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getId()
+     */
+	@Override
+    public Integer getId() {
 		return id;
 	}
 
-	public Collection<Label> getLabelsValues() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getLabelsValues()
+     */
+	@Override
+    public Collection<LabelImpl> getLabelsValues() {
 		return labels;
 	}
 
-	public BigDecimal getPrice() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getPrice()
+     */
+	@Override
+    public BigDecimal getPrice() {
 		return price;
 	}
 
-	public BigDecimal getQuantity() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getQuantity()
+     */
+	@Override
+    public BigDecimal getQuantity() {
 		return quantity;
 	}
 
-	public Symbol getSymbol() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getSymbol()
+     */
+	@Override
+    public Symbol getSymbol() {
 		return symbol;
 	}
 
-	public TransactionType getType() {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#getType()
+     */
+	@Override
+    public TransactionType getType() {
 		return type;
 	}
 
-	public void removeLabel(Label label) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#removeLabel(com.proserus.stocks.model.transactions.Label)
+     */
+	@Override
+    public void removeLabel(Label label) {
 		if(label == null){
 			throw new NullPointerException();
 		}
@@ -143,7 +187,11 @@ public class Transaction extends PersistentModel{
 		label.removeTransaction(this);
 	}
 
-	public void setCommission(BigDecimal commission) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setCommission(java.math.BigDecimal)
+     */
+	@Override
+    public void setCommission(BigDecimal commission) {
 		if (commission == null) {
 			throw new NullPointerException();
 		}
@@ -151,17 +199,29 @@ public class Transaction extends PersistentModel{
 		this.commission = BigDecimalUtils.setDecimalWithScale(commission);
 	}
 
-	public void setDate(Date date) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setDate(java.util.Date)
+     */
+	@Override
+    public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public void setDateTime(DateTime date) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setDateTime(org.joda.time.DateTime)
+     */
+	@Override
+    public void setDateTime(DateTime date) {
 		this.date = date.toDate();
 	}
 
 	//TODO Maybe the same label can be set twice
 	//When removing labels.. we need to remove the transaction link too...
-	public void setLabels(Collection<Label> labels) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setLabels(java.util.Collection)
+     */
+	@Override
+    public void setLabels(Collection<LabelImpl> labels) {
 		if (labels == null || labels.contains(null)) {
 			throw new NullPointerException();
 		}
@@ -174,26 +234,38 @@ public class Transaction extends PersistentModel{
 			label.removeTransaction(this);
 		}
 		this.labels.clear();
-		for (Label label : labels) {
+		for (LabelImpl label : labels) {
 			addLabel(label);
 		}
 	}
 
-	public void setPrice(BigDecimal price) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setPrice(java.math.BigDecimal)
+     */
+	@Override
+    public void setPrice(BigDecimal price) {
 		if (price == null) {
 			throw new NullPointerException();
 		}
 		this.price = BigDecimalUtils.setDecimalWithScale(price);
 	}
 
-	public void setQuantity(BigDecimal quantity) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setQuantity(java.math.BigDecimal)
+     */
+	@Override
+    public void setQuantity(BigDecimal quantity) {
 		if (quantity == null) {
 			throw new NullPointerException();
 		}
 		this.quantity = BigDecimalUtils.setDecimalWithScale(quantity);
 	}
 
-	public void setSymbol(Symbol symbol) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setSymbol(com.proserus.stocks.model.symbols.Symbol)
+     */
+	@Override
+    public void setSymbol(Symbol symbol) {
 		if (symbol == null) {
 			throw new NullPointerException();
 		}
@@ -201,7 +273,11 @@ public class Transaction extends PersistentModel{
 		this.symbol = symbol;
 	}
 
-	public void setType(TransactionType type) {
+	/* (non-Javadoc)
+     * @see com.proserus.stocks.model.transactions.Transaction#setType(com.proserus.stocks.model.transactions.TransactionType)
+     */
+	@Override
+    public void setType(TransactionType type) {
 		if (type == null) {
 			throw new NullPointerException();
 		}
