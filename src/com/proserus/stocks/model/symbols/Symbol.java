@@ -57,7 +57,7 @@ public class Symbol implements Comparable {
 	// @MapKey (name="PRICE_KEY")
 	// @Column(name="PRICE")
 	// @CollectionOfElements(targetElement = com.proserus.stocks.model.symbols.HistoricalPrice.class)
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=HistoricalPriceImpl.class, cascade = CascadeType.ALL)
 	// TODO nullable=false
 	@JoinTable(name = "SYMBOL_PRICES", joinColumns = { @JoinColumn(name = "symbolId") }, inverseJoinColumns = { @JoinColumn(name = "priceId") })
 	private Collection<HistoricalPrice> prices = new LinkedList<HistoricalPrice>();
