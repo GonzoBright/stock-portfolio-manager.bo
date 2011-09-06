@@ -24,13 +24,11 @@ import javax.persistence.Transient;
 
 import org.jfree.data.time.Year;
 
-import com.proserus.stocks.model.common.PersistentModel;
-
 @Entity
 @NamedQueries( { @NamedQuery(name = "symbol.findAll", query = "SELECT s FROM Symbol s"),
         @NamedQuery(name = "symbol.findAllByCurrency", query = "SELECT s FROM Symbol s WHERE currency = :currency"),
         @NamedQuery(name = "symbol.findByTicker", query = "SELECT s FROM Symbol s WHERE ticker = :ticker") })
-public class Symbol extends PersistentModel implements Comparable {
+public class Symbol implements Comparable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -62,7 +60,7 @@ public class Symbol extends PersistentModel implements Comparable {
 	@OneToMany(cascade = CascadeType.ALL)
 	// TODO nullable=false
 	@JoinTable(name = "SYMBOL_PRICES", joinColumns = { @JoinColumn(name = "symbolId") }, inverseJoinColumns = { @JoinColumn(name = "priceId") })
-	private Collection<HistoricalPriceImpl> prices = new LinkedList<HistoricalPriceImpl>();
+	private Collection<HistoricalPrice> prices = new LinkedList<HistoricalPrice>();
 
 	@Transient
 	private Map<Year, HistoricalPrice> mapPrices = new HashMap<Year, HistoricalPrice>();
@@ -187,15 +185,15 @@ public class Symbol extends PersistentModel implements Comparable {
 		return h;
 	}
 	
-	public Collection<HistoricalPriceImpl> getHistoricalPricesValues() {
+	public Collection<HistoricalPrice> getHistoricalPricesValues() {
 		return prices;
 	}
 
-	public Collection<HistoricalPriceImpl> getPrices() {
+	public Collection<HistoricalPrice> getPrices() {
 		return prices;
 	}
 
-	public void addPrice(HistoricalPriceImpl price){
+	public void addPrice(HistoricalPrice price){
 		if(price == null){
 			throw new NullPointerException();
 		}
@@ -207,7 +205,7 @@ public class Symbol extends PersistentModel implements Comparable {
 		prices.add(price);
 		mapPrices.put(price.getYear(), price);
 	}
-	public void setPrices(Collection<HistoricalPriceImpl> prices) {
+	public void setPrices(Collection<HistoricalPrice> prices) {
 		if (prices == null || prices.contains(null)) {
 			throw new NullPointerException();
 		}
@@ -218,7 +216,7 @@ public class Symbol extends PersistentModel implements Comparable {
 
 		this.prices = prices;
 		mapPrices.clear();
-		for (HistoricalPriceImpl hPrice : prices) {
+		for (HistoricalPrice hPrice : prices) {
 			if (hPrice.getYear() == null || hPrice.getYear().toString().isEmpty()) {
 				prices.remove(hPrice);
 			} else {

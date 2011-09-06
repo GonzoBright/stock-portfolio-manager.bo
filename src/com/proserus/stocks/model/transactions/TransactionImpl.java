@@ -21,7 +21,6 @@ import javax.persistence.NamedQuery;
 
 import org.joda.time.DateTime;
 
-import com.proserus.stocks.model.common.PersistentModel;
 import com.proserus.stocks.model.symbols.Symbol;
 import com.proserus.stocks.utils.BigDecimalUtils;
 
@@ -34,7 +33,7 @@ import com.proserus.stocks.utils.BigDecimalUtils;
         @NamedQuery(name = "transaction.findAllByLabel", query = "SELECT t FROM Transaction t WHERE :label in elements(t.labels)"),
         @NamedQuery(name = "transaction.findMinDate", query = "SELECT min(date) FROM Transaction t")
         })
-public class TransactionImpl extends PersistentModel implements Transaction{
+public class TransactionImpl implements Transaction{
 
 	private static final String SEMICOLON_STR = ";";
 
