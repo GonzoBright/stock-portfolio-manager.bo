@@ -13,13 +13,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import com.proserus.stocks.model.common.PersistentModel;
-
 @Entity(name="Label")
 @NamedQueries( { @NamedQuery(name = "label.findAll", query = "SELECT s FROM Label s"),
         @NamedQuery(name = "label.findByName", query = "SELECT s FROM Label s WHERE label = :label"),
         @NamedQuery(name = "label.findSubLabels", query = "SELECT s FROM Label s WHERE label in (:labels)") })
-public class LabelImpl extends PersistentModel implements Comparable, Label {
+public class LabelImpl implements Comparable, Label {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer id;
