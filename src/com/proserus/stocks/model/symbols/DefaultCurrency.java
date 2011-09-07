@@ -8,11 +8,9 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Properties;
 
-import com.proserus.stocks.model.common.ObservableModel;
-
-public class DefaultCurrency extends ObservableModel {
+public class DefaultCurrency {
 	private static final String EMPTY_STR = "";
-	private static final String CONFIG_PROPERTIES = "config.properties";
+	private static final String CONFIG_PROPERTIES = "./config.properties";
 	private static final String DEFAULT = "Default";
 	private Properties ptrans = new Properties();
 	public static CurrencyEnum DEFAULT_CURRENCY = CurrencyEnum.valueOf(Currency.getInstance(Locale.getDefault()).getCurrencyCode());
@@ -23,7 +21,7 @@ public class DefaultCurrency extends ObservableModel {
 
 	void init() {
 		try {
-			ptrans.load(new FileInputStream(config + CONFIG_PROPERTIES));
+			ptrans.load(new FileInputStream(CONFIG_PROPERTIES));
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}
@@ -38,8 +36,6 @@ public class DefaultCurrency extends ObservableModel {
 	public void setDefault(CurrencyEnum cur) {
 		ptrans.setProperty(DEFAULT, cur.name());
 		DEFAULT_CURRENCY = cur;
-		setChanged();
-		notifyObservers();
 	}
 
 	public CurrencyEnum getDefault() {
@@ -48,7 +44,7 @@ public class DefaultCurrency extends ObservableModel {
 
 	public void save() {
 		try {
-			ptrans.store(new FileOutputStream(config + CONFIG_PROPERTIES), EMPTY_STR);
+			ptrans.store(new FileOutputStream(CONFIG_PROPERTIES), EMPTY_STR);
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 		}

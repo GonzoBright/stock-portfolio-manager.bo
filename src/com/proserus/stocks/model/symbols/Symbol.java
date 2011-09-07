@@ -32,9 +32,6 @@ public interface Symbol {
 
 	public abstract String getTicker();
 
-	/*
-	 * public Float getPrice() { return price; }
-	 */
 	public abstract HistoricalPrice getPrice(Year year);
 
 	public abstract Collection<HistoricalPrice> getHistoricalPricesValues();
