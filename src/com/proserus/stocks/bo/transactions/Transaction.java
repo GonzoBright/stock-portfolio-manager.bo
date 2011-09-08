@@ -1,4 +1,4 @@
-package com.proserus.stocks.model.transactions;
+package com.proserus.stocks.bo.transactions;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import org.joda.time.DateTime;
 
-import com.proserus.stocks.model.symbols.Symbol;
+import com.proserus.stocks.bo.symbols.Symbol;
 
 public interface Transaction {
 
