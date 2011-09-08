@@ -1,12 +1,12 @@
-package com.proserus.stocks.model.analysis;
+package com.proserus.stocks.bo.analysis;
 
 import java.math.BigDecimal;
 
 import org.joda.time.DateTime;
 
-import com.proserus.stocks.model.symbols.CurrencyEnum;
-import com.proserus.stocks.model.symbols.Symbol;
-import com.proserus.stocks.utils.BigDecimalUtils;
+import com.proserus.stocks.bo.symbols.CurrencyEnum;
+import com.proserus.stocks.bo.symbols.Symbol;
+import com.proserus.stocks.bo.utils.BigDecimalUtils;
 
 public class AnalysisImpl implements Analysis {
 	private BigDecimal averageCostPerDay;

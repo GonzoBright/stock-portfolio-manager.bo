@@ -1,6 +1,6 @@
-package com.proserus.stocks.model.analysis;
+package com.proserus.stocks.bo.analysis;
 
-import com.proserus.stocks.model.symbols.Symbol;
+import com.proserus.stocks.bo.symbols.Symbol;
 
 public interface SymbolAnalysis extends ViewableAnalysis{
 	//TODO create another type of Analysis for currency...

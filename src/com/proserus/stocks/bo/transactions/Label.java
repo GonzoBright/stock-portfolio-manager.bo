@@ -1,4 +1,4 @@
-package com.proserus.stocks.model.transactions;
+package com.proserus.stocks.bo.transactions;
 
 import java.util.Collection;
 

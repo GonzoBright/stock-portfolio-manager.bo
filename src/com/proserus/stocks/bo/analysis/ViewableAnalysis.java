@@ -1,4 +1,4 @@
-package com.proserus.stocks.model.analysis;
+package com.proserus.stocks.bo.analysis;
 
 import java.math.BigDecimal;
 

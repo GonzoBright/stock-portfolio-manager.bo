@@ -1,4 +1,4 @@
-package com.proserus.stocks.utils;
+package com.proserus.stocks.bo.utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
