@@ -10,4 +10,5 @@ public interface BoBuilder {
 	public Symbol getSymbol();
 	public Label getLabel();
 	public HistoricalPrice getHistoricalPrice();
+	public DBVersion getVersion();
 }
