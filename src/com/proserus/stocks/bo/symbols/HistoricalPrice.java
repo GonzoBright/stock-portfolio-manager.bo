@@ -9,7 +9,7 @@ public interface HistoricalPrice {
 
 	public Year getYear();
 	
-	public void setYear(Year year);
+	public void setYear(Year year);//FIXME Year JFree
 
 	public BigDecimal getPrice();
 	
