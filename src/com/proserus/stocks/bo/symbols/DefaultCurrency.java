@@ -13,7 +13,16 @@ public class DefaultCurrency {
 	private static final String CONFIG_PROPERTIES = "./config.properties";
 	private static final String DEFAULT = "Default";
 	private Properties ptrans = new Properties();
-	public static CurrencyEnum DEFAULT_CURRENCY = CurrencyEnum.valueOf(Currency.getInstance(Locale.getDefault()).getCurrencyCode());
+
+	public static CurrencyEnum DEFAULT_CURRENCY;
+
+	static {
+		try {
+			DEFAULT_CURRENCY = CurrencyEnum.valueOf(Currency.getInstance(Locale.getDefault()).getCurrencyCode());
+		} catch (IllegalArgumentException e) {
+			DEFAULT_CURRENCY = CurrencyEnum.USD;
+		}
+	}
 
 	public DefaultCurrency() {
 		init();
