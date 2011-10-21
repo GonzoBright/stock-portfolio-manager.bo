@@ -10,7 +10,7 @@ public interface Symbol {
 
 	public abstract Integer getId();
 
-	public abstract Map<Year, HistoricalPrice> getMapPrices();
+	public abstract Map<Year, HistoricalPrice> getMapPrices();//FIXME Year JFree
 
 	public abstract boolean isCustomPriceFirst();
 
