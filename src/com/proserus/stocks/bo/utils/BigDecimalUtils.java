@@ -21,6 +21,13 @@ public class BigDecimalUtils {
 		return value.setScale(5,RoundingMode.HALF_EVEN);
 	}
 	
+	static public BigDecimal setDecimalWithScale2(BigDecimal value){
+		if(value == null){
+			return null;
+		}
+		return value.setScale(2,RoundingMode.HALF_EVEN);
+	}
+	
 	static public String getString(BigDecimal value){
 		return setDecimalWithScale(value).toString();
 	}

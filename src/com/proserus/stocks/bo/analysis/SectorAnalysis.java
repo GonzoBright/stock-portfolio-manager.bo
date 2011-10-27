@@ -8,8 +8,6 @@ public interface SectorAnalysis {
 
 	SectorEnum getSector();
 	
-	void setFinanceMarketValue(BigDecimal value);
-	
-	void setTechnologyMarketValue(BigDecimal value);
+	BigDecimal getMarketValue();
 	
 }

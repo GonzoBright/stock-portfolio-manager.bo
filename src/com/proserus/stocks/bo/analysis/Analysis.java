@@ -5,16 +5,18 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 import com.proserus.stocks.bo.symbols.CurrencyEnum;
+import com.proserus.stocks.bo.symbols.SectorEnum;
 import com.proserus.stocks.bo.symbols.Symbol;
+import com.proserus.stocks.bo.transactions.Label;
 
-public interface Analysis extends CurrencyAnalysis, SymbolAnalysis {
+public interface Analysis extends CurrencyAnalysis, SymbolAnalysis, SectorAnalysis,LabelAnalysis,YearAnalysis {
 
 	void setQuantity(BigDecimal value);
 
 	void setTotalCost(BigDecimal value);
 	
 	void setCostBasis(BigDecimal value);
-
+	
 	void setAveragePrice(BigDecimal value);
 
 	void setCommission(BigDecimal value);
@@ -30,6 +32,10 @@ public interface Analysis extends CurrencyAnalysis, SymbolAnalysis {
 	void setMarketValue(BigDecimal value);
 
 	void setSymbol(Symbol symbol);
+	
+	void setSector(SectorEnum sector);
+	
+	void setLabel(Label label);
 
 	void setCapitalGain(BigDecimal value);
 
@@ -50,6 +56,12 @@ public interface Analysis extends CurrencyAnalysis, SymbolAnalysis {
 	void setAnnualizedReturn(BigDecimal value);
 
 	BigDecimal getTotalSold();
+	
+	void setYear(int year);
+	
+	int getYear();
+	
+	Label getLabel();
 
 	void setQuantityBuy(BigDecimal value);
 
