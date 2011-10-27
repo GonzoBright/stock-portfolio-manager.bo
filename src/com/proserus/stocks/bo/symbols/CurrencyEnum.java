@@ -19,9 +19,9 @@ public enum CurrencyEnum {
 	NZD("images/nz.png"),
 	RUB("images/ru.png"),
 	SEK("images/se.png"),
-	SAR("images/sa.png"),
+	SAR("images/za.png"),
 	USD("images/us.png"),
-	WON("images/sk.png");
+	WON("images/kr.png");
 	
 	private ImageIcon icon = null;
 	private CurrencyEnum(String image){

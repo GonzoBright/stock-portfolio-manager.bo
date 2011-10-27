@@ -5,10 +5,16 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 
 import com.proserus.stocks.bo.symbols.CurrencyEnum;
+import com.proserus.stocks.bo.symbols.SectorEnum;
 import com.proserus.stocks.bo.symbols.Symbol;
+import com.proserus.stocks.bo.transactions.Label;
 import com.proserus.stocks.bo.utils.BigDecimalUtils;
 
 public class AnalysisImpl implements Analysis {
+	public SectorEnum getSector() {
+    	return sector;
+    }
+
 	private BigDecimal averageCostPerDay;
 	private BigDecimal averagePrice;
 	private BigDecimal capitalGain;
@@ -26,6 +32,18 @@ public class AnalysisImpl implements Analysis {
 	private BigDecimal marketValue;
 	private BigDecimal overallReturn;
 
+	private Label label;
+	private int year;
+	
+	public Label getLabel() {
+    	return label;
+    }
+
+	public void setLabel(Label label) {
+    	this.label = label;
+    }
+
+	private SectorEnum sector;
 	private BigDecimal quantity;
 	private BigDecimal quantityBuy;
 	private BigDecimal quantitySold;
@@ -203,11 +221,19 @@ public class AnalysisImpl implements Analysis {
 
 	public void setCurrency(CurrencyEnum currency) {
 		// TODO Move this to CurrencyAnalysis.
-		if (symbol != null) {
+		if (symbol != null || sector!=null) {
 			throw new IllegalStateException();
 		}
 		this.currency = currency;
 	}
+	
+	@Override
+    public void setSector(SectorEnum sector) {
+		if (symbol != null || currency!=null) {
+			throw new IllegalStateException();
+		}
+		this.sector =sector;
+    }
 
 	@Override
 	public void setDividend(BigDecimal dividend) {
@@ -260,7 +286,7 @@ public class AnalysisImpl implements Analysis {
 	}
 
 	public void setSymbol(Symbol symbol) {
-		if (currency != null) {
+		if (sector!= null || currency!=null) {
 			throw new IllegalStateException();
 		}
 		this.symbol = symbol;
@@ -299,4 +325,14 @@ public class AnalysisImpl implements Analysis {
 		sb.append(", EndPrd:" + endOfPeriod.getYear() + "-" + endOfPeriod.getMonthOfYear() + "-" + endOfPeriod.getDayOfMonth());
 		return sb.substring(2);
 	}
+
+	@Override
+    public void setYear(int year) {
+	    this.year = year;
+    }
+
+	@Override
+    public int getYear() {
+	    return year;
+    }
 }
