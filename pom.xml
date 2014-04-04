@@ -13,10 +13,6 @@
 	<name>Stock Portfolio Manager - BO</name>
 	<description>Stock Portfolio Manager - Business Objects</description>
 
-	<properties>
-		<folder.bo>${project.basedir}</folder.bo>
-	</properties>
-
 	<build>
 		<plugins>
 			<plugin>
