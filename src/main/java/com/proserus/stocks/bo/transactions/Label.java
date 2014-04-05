@@ -2,7 +2,7 @@ package com.proserus.stocks.bo.transactions;
 
 import java.util.Collection;
 
-public interface Label {
+public interface Label extends Comparable<Label> {
 
 	public abstract Integer getId();
 
@@ -18,8 +18,6 @@ public interface Label {
 	public abstract void setName(String name);
 
 	public abstract String getName();
-
-	public abstract int compareTo(Object arg0);
 
 	public abstract boolean equals(Object obj);
 
