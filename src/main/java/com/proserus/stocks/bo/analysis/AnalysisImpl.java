@@ -15,7 +15,6 @@ public class AnalysisImpl implements Analysis {
     	return sector;
     }
 
-	private BigDecimal averageCostPerDay;
 	private BigDecimal averagePrice;
 	private BigDecimal capitalGain;
 	private BigDecimal capitalGainPercent;
@@ -87,12 +86,8 @@ public class AnalysisImpl implements Analysis {
 	private BigDecimal annualizedReturn;
 
 	private Symbol symbol = null;
-	private BigDecimal totalPriceHolding;
 	private BigDecimal totalSold;
 
-	public BigDecimal getAverageCostPerDay() {
-		return averageCostPerDay;
-	}
 
 	@Override
 	public BigDecimal getAveragePrice() {
@@ -105,6 +100,7 @@ public class AnalysisImpl implements Analysis {
 	}
 
 	@Override
+	@Deprecated
 	public BigDecimal getCapitalGainPercent() {
 		return capitalGainPercent;
 	}
@@ -135,18 +131,6 @@ public class AnalysisImpl implements Analysis {
 	@Override
 	public BigDecimal getDividendYield() {
 		return dividendYield;
-	}
-
-	public BigDecimal getDuration() {
-		return duration;
-	}
-
-	public BigDecimal getDurationCost() {
-		return durationCost;
-	}
-
-	public BigDecimal getLonguestHolding() {
-		return longuestHolding;
 	}
 
 	@Override
@@ -182,16 +166,8 @@ public class AnalysisImpl implements Analysis {
 		return symbol;
 	}
 
-	public BigDecimal getTotalPriceHolding() {
-		return totalPriceHolding;
-	}
-
 	public BigDecimal getTotalSold() {
 		return totalSold;
-	}
-
-	public void setAverageCostPerDay(BigDecimal averageCostPerDay) {
-		this.averageCostPerDay = averageCostPerDay;
 	}
 
 	@Override
@@ -245,14 +221,17 @@ public class AnalysisImpl implements Analysis {
 		this.dividendYield = dividendYield;
 	}
 
+	@Deprecated
 	public void setDuration(BigDecimal duration) {
 		this.duration = duration;
 	}
 
+	@Deprecated
 	public void setDurationCost(BigDecimal durationCost) {
 		this.durationCost = durationCost;
 	}
 
+	@Deprecated
 	public void setLonguestHolding(BigDecimal longuestHolding) {
 		this.longuestHolding = longuestHolding;
 	}
@@ -292,10 +271,6 @@ public class AnalysisImpl implements Analysis {
 		this.symbol = symbol;
 	}
 
-	public void setTotalPriceHolding(BigDecimal totalPriceHolding) {
-		this.totalPriceHolding = totalPriceHolding;
-	}
-
 	public void setTotalSold(BigDecimal totalSold) {
 		this.totalSold = totalSold;
 	}
@@ -303,7 +278,6 @@ public class AnalysisImpl implements Analysis {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(", AvrCost/D:" + BigDecimalUtils.setDecimalWithScale(averageCostPerDay));
 		sb.append(", AvrPrc:" + BigDecimalUtils.setDecimalWithScale(averagePrice));
 		sb.append(", CapGain:" + BigDecimalUtils.setDecimalWithScale(capitalGain));
 		sb.append(", CapGainPrc:" + BigDecimalUtils.setDecimalWithScale(capitalGainPercent));
