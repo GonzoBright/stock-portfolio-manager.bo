@@ -9,8 +9,6 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.Validate;
 
-import com.proserus.stocks.bo.utils.PathUtils;
-
 public enum SectorEnum implements Comparable<SectorEnum>{
 	UNKNOWN ("unknown"),
 	MATERIAL ("basicMaterials"),
