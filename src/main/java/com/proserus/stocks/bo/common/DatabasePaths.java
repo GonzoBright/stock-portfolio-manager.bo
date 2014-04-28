@@ -3,8 +3,6 @@ package com.proserus.stocks.bo.common;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class DatabasePaths {
 	private Set<String> databases = new HashSet<String>();
 	private String binaryCurrentFolder;
