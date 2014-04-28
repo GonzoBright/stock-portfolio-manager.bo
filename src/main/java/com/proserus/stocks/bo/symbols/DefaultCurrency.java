@@ -8,9 +8,11 @@ import java.util.Currency;
 import java.util.Locale;
 import java.util.Properties;
 
+import com.proserus.stocks.bo.utils.PathUtils;
+
 public class DefaultCurrency {
 	private static final String EMPTY_STR = "";
-	private static final String CONFIG_PROPERTIES = "./config.properties";
+	private static final String CONFIG_PROPERTIES = PathUtils.getInstallationFolder()+"./config.properties";
 	private static final String DEFAULT = "Default";
 	private Properties ptrans = new Properties();
 
