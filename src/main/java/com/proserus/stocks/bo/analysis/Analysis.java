@@ -70,5 +70,4 @@ public interface Analysis extends CurrencyAnalysis, SymbolAnalysis, SectorAnalys
 	void setQuantitySold(BigDecimal value);
 
 	BigDecimal getQuantitySold();
-
 }

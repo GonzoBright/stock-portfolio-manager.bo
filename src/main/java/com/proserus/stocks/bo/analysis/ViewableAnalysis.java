@@ -30,4 +30,6 @@ public interface ViewableAnalysis {
 	BigDecimal getAnnualizedReturn();
 
 	BigDecimal getNumberOfYears();
+	
+	String getSnapshot();
 }

@@ -9,6 +9,7 @@ import com.proserus.stocks.bo.symbols.SectorEnum;
 import com.proserus.stocks.bo.symbols.Symbol;
 import com.proserus.stocks.bo.transactions.Label;
 import com.proserus.stocks.bo.utils.BigDecimalUtils;
+import com.proserus.stocks.bo.utils.LoggerUtils;
 
 public class AnalysisImpl implements Analysis {
 	public SectorEnum getSector() {
@@ -221,20 +222,6 @@ public class AnalysisImpl implements Analysis {
 		this.dividendYield = dividendYield;
 	}
 
-	@Deprecated
-	public void setDuration(BigDecimal duration) {
-		this.duration = duration;
-	}
-
-	@Deprecated
-	public void setDurationCost(BigDecimal durationCost) {
-		this.durationCost = durationCost;
-	}
-
-	@Deprecated
-	public void setLonguestHolding(BigDecimal longuestHolding) {
-		this.longuestHolding = longuestHolding;
-	}
 
 	@Override
 	public void setMarketGrowth(BigDecimal marketGrowth) {
@@ -275,8 +262,10 @@ public class AnalysisImpl implements Analysis {
 		this.totalSold = totalSold;
 	}
 
+	//TODO Do not use toString() for business logic
 	@Override
 	public String toString() {
+	    assert LoggerUtils.validateCalledFromLogger(): LoggerUtils.callerException();
 		StringBuilder sb = new StringBuilder();
 		sb.append(", AvrPrc:" + BigDecimalUtils.setDecimalWithScale(averagePrice));
 		sb.append(", CapGain:" + BigDecimalUtils.setDecimalWithScale(capitalGain));
@@ -299,6 +288,30 @@ public class AnalysisImpl implements Analysis {
 		sb.append(", EndPrd:" + endOfPeriod.getYear() + "-" + endOfPeriod.getMonthOfYear() + "-" + endOfPeriod.getDayOfMonth());
 		return sb.substring(2);
 	}
+	
+    public String getSnapshot() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(", AvrPrc:" + BigDecimalUtils.setDecimalWithScale(averagePrice));
+        sb.append(", CapGain:" + BigDecimalUtils.setDecimalWithScale(capitalGain));
+        sb.append(", CapGainPrc:" + BigDecimalUtils.setDecimalWithScale(capitalGainPercent));
+        sb.append(", Comm:" + BigDecimalUtils.setDecimalWithScale(commission));
+        sb.append(", Cost:" + BigDecimalUtils.setDecimalWithScale(totalCost));
+        sb.append(", Cur:" + (currency != null ? currency.name() : null));
+        sb.append(", Div:" + BigDecimalUtils.setDecimalWithScale(dividend));
+        sb.append(", DivYld:" + BigDecimalUtils.setDecimalWithScale(dividendYield));
+        sb.append(", Dur:" + BigDecimalUtils.setDecimalWithScale(duration));
+        sb.append(", DurCst:" + BigDecimalUtils.setDecimalWithScale(durationCost));
+        sb.append(", LongstHold:" + BigDecimalUtils.setDecimalWithScale(longuestHolding));
+        sb.append(", MrktGrwt:" + BigDecimalUtils.setDecimalWithScale(marketGrowth));
+        sb.append(", MrktValue:" + BigDecimalUtils.setDecimalWithScale(marketValue));
+        sb.append(", OvralRtrn:" + BigDecimalUtils.setDecimalWithScale(overallReturn));
+        sb.append(", Qty:" + BigDecimalUtils.setDecimalWithScale(quantity));
+        sb.append(", QtyBuy:" + BigDecimalUtils.setDecimalWithScale(quantityBuy));
+        sb.append(", QtySold:" + BigDecimalUtils.setDecimalWithScale(quantitySold));
+        sb.append(", StrtPrd:" + startOfPeriod.getYear() + "-" + startOfPeriod.getMonthOfYear() + "-" + startOfPeriod.getDayOfMonth());
+        sb.append(", EndPrd:" + endOfPeriod.getYear() + "-" + endOfPeriod.getMonthOfYear() + "-" + endOfPeriod.getDayOfMonth());
+        return sb.substring(2);
+    }
 
 	@Override
     public void setYear(int year) {

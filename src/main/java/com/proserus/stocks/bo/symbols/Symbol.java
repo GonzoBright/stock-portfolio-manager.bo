@@ -4,13 +4,11 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Map;
 
-import org.jfree.data.time.Year;
-
 public interface Symbol {
 
 	public abstract Integer getId();
 
-	public abstract Map<Year, HistoricalPrice> getMapPrices();//FIXME Year JFree
+	public abstract Map<Integer, HistoricalPrice> getMapPrices();
 
 	public abstract boolean isCustomPriceFirst();
 
@@ -24,7 +22,7 @@ public interface Symbol {
 
 	public abstract void setTicker(String ticker);
 
-	public abstract void setPrice(BigDecimal price, Year year);
+	public abstract void setPrice(BigDecimal price, int year);
 
 	public abstract void setCurrency(CurrencyEnum currency);
 
@@ -32,7 +30,7 @@ public interface Symbol {
 
 	public abstract String getTicker();
 
-	public abstract HistoricalPrice getPrice(Year year);
+	public abstract HistoricalPrice getPrice(int year);
 
 	public abstract Collection<HistoricalPrice> getHistoricalPricesValues();
 

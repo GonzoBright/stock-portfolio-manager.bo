@@ -4,10 +4,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.Validate;
+
+import com.proserus.stocks.bo.utils.LoggerUtils;
 
 public enum SectorEnum implements Comparable<SectorEnum>{
 	UNKNOWN ("unknown"),
@@ -24,7 +25,7 @@ public enum SectorEnum implements Comparable<SectorEnum>{
 	UTILITIES("utilities"),
 	OTHER("other");
 	
-	private static final ResourceBundle sectors = ResourceBundle.getBundle("sectors", Locale.getDefault());
+	private static final ResourceBundle sectors = ResourceBundle.getBundle("sectors");
 	private static final List<SectorEnum> sortedSectors; 
 	
 	static{
@@ -33,15 +34,15 @@ public enum SectorEnum implements Comparable<SectorEnum>{
 	}
 	
 	
-	
 	private String title = null;
 
 	private SectorEnum(String title){
-		Validate.notNull(title);
-		Validate.notEmpty(title);
-		
-		this.title = title;
-	}
+        Validate.notNull(title);
+        Validate.notEmpty(title);
+        
+        this.title = title;
+    }
+	
 	
 	public static List<SectorEnum> retrieveSortedSectors(){
 		return sortedSectors;
@@ -53,8 +54,9 @@ public enum SectorEnum implements Comparable<SectorEnum>{
 	
 	@Override
 	public String toString() {
-	    return getTitle();
-	}
+	    assert LoggerUtils.validateCalledFromLogger(): LoggerUtils.callerException();
+        return "SectorEnum: name=" + name() + ", title=" + title;
+    }
 }
 
 class SectorComparator implements Comparator<SectorEnum>{

@@ -3,7 +3,6 @@ package com.proserus.stocks.bo.utils;
 import java.io.File;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 public class PathUtils {
@@ -13,7 +12,6 @@ public class PathUtils {
 	public static String getInstallationFolder() {
 		String folder = PathUtils.class.getClassLoader().getResource(".")
 				.getPath();
-		folder = StringUtils.removeStart(folder, "/");
 		folder = StringUtils.removeEnd(folder, "/");
 		folder = StringUtils.removeEnd(folder, "\\");
 		folder = StringUtils.removeEnd(folder, "target/classes");

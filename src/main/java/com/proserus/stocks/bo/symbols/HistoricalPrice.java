@@ -2,14 +2,12 @@ package com.proserus.stocks.bo.symbols;
 
 import java.math.BigDecimal;
 
-import org.jfree.data.time.Year;
-
 
 public interface HistoricalPrice {
 
-	public Year getYear();
+	public Integer getYear();
 	
-	public void setYear(Year year);//FIXME Year JFree
+	public void setYear(Integer year);
 
 	public BigDecimal getPrice();
 	

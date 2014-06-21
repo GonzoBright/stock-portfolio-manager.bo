@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class DatabasePaths {
-	private Set<String> databases = new HashSet<String>();
-	private Map<String, File> databaseParentFolder = new HashMap<String, File>();
+	private Set<Database> databases = new HashSet<Database>();
+	private Map<Database, File> databaseParentFolder = new HashMap<Database, File>();
 	private String binaryCurrentFolder;
 	private String osCurrentFolder;
-	private String selectedDatabase;
+	private Database selectedDatabase;
 
 	public String getBinaryCurrentFolder() {
 		return binaryCurrentFolder;
@@ -29,24 +29,24 @@ public class DatabasePaths {
 		this.osCurrentFolder = osCurrentFolder;
 	}
 
-	public String getSelectedDatabase() {
+	public Database getSelectedDatabase() {
 		return selectedDatabase;
 	}
 
-	public void setSelectedDatabase(String selectedDatabase) {
+	public void setSelectedDatabase(Database selectedDatabase) {
 		this.selectedDatabase = selectedDatabase;
 	}
 
-	public void addDb(String db) {
+	public void addDb(Database db) {
 		databases.add(db);
-		databaseParentFolder.put(db, new File(db).getParentFile());
+		databaseParentFolder.put(db, new File(db.getPath()).getParentFile());
 	}
 
-	public Set<String> getDatabases() {
+	public Set<Database> getDatabases() {
 		return databases;
 	}
 
-	public Map<String, File> getDatabaseParentFolder() {
+	public Map<Database, File> getDatabaseParentFolder() {
 		return databaseParentFolder;
 	}
 

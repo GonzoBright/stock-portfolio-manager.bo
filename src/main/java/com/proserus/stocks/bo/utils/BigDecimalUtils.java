@@ -29,7 +29,7 @@ public class BigDecimalUtils {
 	}
 	
 	static public String getString(BigDecimal value){
-		return setDecimalWithScale(value).toString();
+		return String.valueOf(setDecimalWithScale(value));
 	}
 	
 	public static BigDecimal stringToBigDecimal(String value){
