@@ -20,6 +20,10 @@ public class BigDecimalUtils {
 		return value.signum() == 1;
 	}
 
+	static public boolean isNotNegative(BigDecimal value) {
+		return value.signum() != -1;
+	}
+
 	static public BigDecimal setDecimalWithScale2(BigDecimal value) {
 		if (value == null) {
 			return null;
