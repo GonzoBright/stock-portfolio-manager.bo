@@ -11,7 +11,7 @@ import org.hibernate.usertype.UserType;
 
 import com.proserus.stocks.bo.common.PersistentEnum;
 
-public abstract class PersistentEnumUserType<T extends PersistentEnum> implements UserType {
+public abstract class PersistentEnumUserType<T extends PersistentEnum<?>> implements UserType {
 
 	@Override
 	public Object assemble(Serializable cached, Object owner) throws HibernateException {
@@ -49,7 +49,7 @@ public abstract class PersistentEnumUserType<T extends PersistentEnum> implement
 		if (rs.wasNull()) {
 			return null;
 		}
-		for (PersistentEnum value : returnedClass().getEnumConstants()) {
+		for (PersistentEnum<?> value : returnedClass().getEnumConstants()) {
 			if (id.equals(value.getId())) {
 				return value;
 			}
@@ -62,7 +62,7 @@ public abstract class PersistentEnumUserType<T extends PersistentEnum> implement
 		if (value == null) {
 			st.setNull(index, Types.VARCHAR);
 		} else {
-			st.setString(index, ((PersistentEnum) value).getId());
+			st.setString(index, ((PersistentEnum<?>) value).getId());
 		}
 	}
 
