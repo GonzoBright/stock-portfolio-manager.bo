@@ -8,12 +8,8 @@ public class BigDecimalUtils {
 	public static BigDecimal HUNDRED = new BigDecimal(100);
 
 	static public BigDecimal setDecimalWithScale(BigDecimal value) {
-		if (value == null) {
-			return null;
-		}
-
 		// TODO Should we let the view display the complete numbers ??
-		return value.setScale(5, RoundingMode.HALF_EVEN);
+		return value != null ? value.setScale(5, RoundingMode.HALF_EVEN) : null;
 	}
 
 	static public boolean isPositive(BigDecimal value) {
@@ -25,10 +21,7 @@ public class BigDecimalUtils {
 	}
 
 	static public BigDecimal setDecimalWithScale2(BigDecimal value) {
-		if (value == null) {
-			return null;
-		}
-		return value.setScale(2, RoundingMode.HALF_EVEN);
+		return value != null ? value.setScale(2, RoundingMode.HALF_EVEN) : null;
 	}
 
 	static public String getString(BigDecimal value) {

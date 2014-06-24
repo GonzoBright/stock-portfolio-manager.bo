@@ -6,27 +6,30 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
 public class PathUtils {
+	// TODO this is sketchy...
 	// Cannot be static, to ensure path is resolve before log4j
 	private Logger LOGGER = Logger.getLogger(PathUtils.class.getName());
+	private static String installationFolder;
+	private static String absolutePath;
+	static {
+		installationFolder = PathUtils.class.getClassLoader().getResource(".").getPath();
+		installationFolder = StringUtils.removeEnd(installationFolder, "/");
+		installationFolder = StringUtils.removeEnd(installationFolder, "\\");
+		installationFolder = StringUtils.removeEnd(installationFolder, "target/classes");
+		installationFolder = StringUtils.removeEnd(installationFolder, "/");
+		installationFolder = StringUtils.removeEnd(installationFolder, "\\");
+
+		absolutePath = new File("./").getAbsolutePath();
+		absolutePath = StringUtils.removeEnd(absolutePath, ".");
+		absolutePath = StringUtils.removeEnd(absolutePath, "/");
+		absolutePath = StringUtils.removeEnd(absolutePath, "\\");
+	}
 
 	public static String getInstallationFolder() {
-		String folder = PathUtils.class.getClassLoader().getResource(".")
-				.getPath();
-		folder = StringUtils.removeEnd(folder, "/");
-		folder = StringUtils.removeEnd(folder, "\\");
-		folder = StringUtils.removeEnd(folder, "target/classes");
-		folder = StringUtils.removeEnd(folder, "/");
-		folder = StringUtils.removeEnd(folder, "\\");
-
-		return folder;
+		return installationFolder;
 	}
 
 	public static String getCurrentFolder() {
-		String folder = new File("./").getAbsolutePath();
-		folder = StringUtils.removeEnd(folder, ".");
-		folder = StringUtils.removeEnd(folder, "/");
-		folder = StringUtils.removeEnd(folder, "\\");
-
-		return folder;
+		return absolutePath;
 	}
 }
