@@ -2,64 +2,60 @@ package com.proserus.stocks.bo.common;
 
 import java.io.File;
 
-public class Database implements Comparable {
+import com.proserus.stocks.bo.utils.LoggerUtils;
 
-    private String path;
-    private File parentFolder;
+public class Database implements Comparable<Database> {
 
-    public Database(String path) {
-        this.path = path;
-        parentFolder =  new File(path).getParentFile();
-    }
-    
+	private String path;
+	private File parentFolder;
 
-    public String getPath() {
-        return path;
-    }
-    
+	public Database(String path) {
+		this.path = path;
+		parentFolder = new File(path).getParentFile();
+	}
 
-    public File getParentFolder() {
-        return parentFolder;
-    }
+	public String getPath() {
+		return path;
+	}
 
+	public File getParentFolder() {
+		return parentFolder;
+	}
 
-    @Override
-    public String toString() {
-        return "Database [path=" + path + ", parentFolder=" + parentFolder + "]";
-    }
+	@Override
+	public String toString() {
+		assert LoggerUtils.validateCalledFromLogger() : LoggerUtils.callerException();
+		return "Database [path=" + path + ", parentFolder=" + parentFolder + "]";
+	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		return result;
+	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((path == null) ? 0 : path.hashCode());
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Database other = (Database) obj;
+		if (path == null) {
+			if (other.path != null)
+				return false;
+		} else if (!path.equals(other.path))
+			return false;
+		return true;
+	}
 
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Database other = (Database) obj;
-        if (path == null) {
-            if (other.path != null)
-                return false;
-        } else if (!path.equals(other.path))
-            return false;
-        return true;
-    }
-
-
-    @Override
-    public int compareTo(Object obj) {
-        Database db2 = (Database)obj;
-        return this.getPath().compareTo(db2.getPath());
-    }
+	@Override
+	public int compareTo(Database db2) {
+		return this.getPath().compareTo(db2.getPath());
+	}
 
 }

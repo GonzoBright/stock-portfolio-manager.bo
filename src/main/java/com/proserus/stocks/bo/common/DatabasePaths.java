@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.proserus.stocks.bo.utils.LoggerUtils;
+
 public class DatabasePaths {
 	private Set<Database> databases = new HashSet<Database>();
 	private Map<Database, File> databaseParentFolder = new HashMap<Database, File>();
@@ -48,6 +50,13 @@ public class DatabasePaths {
 
 	public Map<Database, File> getDatabaseParentFolder() {
 		return databaseParentFolder;
+	}
+
+	@Override
+	public String toString() {
+		assert LoggerUtils.validateCalledFromLogger() : LoggerUtils.callerException();
+		return "DatabasePaths [databases=" + databases + ", databaseParentFolder=" + databaseParentFolder + ", binaryCurrentFolder="
+				+ binaryCurrentFolder + ", osCurrentFolder=" + osCurrentFolder + ", selectedDatabase=" + selectedDatabase + "]";
 	}
 
 }

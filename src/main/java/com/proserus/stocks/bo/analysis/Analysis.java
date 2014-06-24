@@ -1,8 +1,7 @@
 package com.proserus.stocks.bo.analysis;
 
 import java.math.BigDecimal;
-
-import org.joda.time.DateTime;
+import java.util.Calendar;
 
 import com.proserus.stocks.bo.symbols.CurrencyEnum;
 import com.proserus.stocks.bo.symbols.SectorEnum;
@@ -43,13 +42,13 @@ public interface Analysis extends CurrencyAnalysis, SymbolAnalysis, SectorAnalys
 
 	void setTotalSold(BigDecimal value);
 
-	void setStartOfPeriod(DateTime date);
+	void setStartOfPeriod(Calendar date);
 
-	DateTime getStartOfPeriod();
+	Calendar getStartOfPeriod();
 
-	void setEndOfPeriod(DateTime date);
+	void setEndOfPeriod(Calendar endDate);
 
-	DateTime getEndOfPeriod();
+	Calendar getEndOfPeriod();
 	
 	void setNumberOfYears(BigDecimal years);
 	

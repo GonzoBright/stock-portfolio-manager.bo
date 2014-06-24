@@ -1,8 +1,8 @@
 package com.proserus.stocks.bo.symbols;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 public interface Symbol {
 
@@ -32,13 +32,13 @@ public interface Symbol {
 
 	public abstract HistoricalPrice getPrice(int year);
 
-	public abstract Collection<HistoricalPrice> getHistoricalPricesValues();
+	public abstract Set<HistoricalPrice> getHistoricalPricesValues();
 
-	public abstract Collection<HistoricalPrice> getPrices();
+	public abstract Set<HistoricalPrice> getPrices();
 
 	public abstract void addPrice(HistoricalPrice price);
 
-	public abstract void setPrices(Collection<HistoricalPrice> prices);
+	public abstract void setPrices(Set<HistoricalPrice> prices);
 
 	public abstract CurrencyEnum getCurrency();
 

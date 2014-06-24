@@ -5,39 +5,38 @@ import java.math.RoundingMode;
 
 public class BigDecimalUtils {
 
-	static public BigDecimal setDecimalWithScale(BigDecimal value){
-		//TODO the Ifs are only because I'm using the method to display all values as tooltip..
-		//It is easier to check for Null once here..
-		//And not to round numbers that are already smaller than 5 precision.
-		if(value == null){
+	public static BigDecimal HUNDRED = new BigDecimal(100);
+
+	static public BigDecimal setDecimalWithScale(BigDecimal value) {
+		if (value == null) {
 			return null;
 		}
-		
-//		if(value.precision() <= 5){
-//			return value;
-//		}
-		
-		//TODO Should we let the view display the complete numbers ??
-		return value.setScale(5,RoundingMode.HALF_EVEN);
+
+		// TODO Should we let the view display the complete numbers ??
+		return value.setScale(5, RoundingMode.HALF_EVEN);
 	}
-	
-	static public BigDecimal setDecimalWithScale2(BigDecimal value){
-		if(value == null){
+
+	static public boolean isPositive(BigDecimal value) {
+		return value.signum() == 1;
+	}
+
+	static public BigDecimal setDecimalWithScale2(BigDecimal value) {
+		if (value == null) {
 			return null;
 		}
-		return value.setScale(2,RoundingMode.HALF_EVEN);
+		return value.setScale(2, RoundingMode.HALF_EVEN);
 	}
-	
-	static public String getString(BigDecimal value){
+
+	static public String getString(BigDecimal value) {
 		return String.valueOf(setDecimalWithScale(value));
 	}
-	
-	public static BigDecimal stringToBigDecimal(String value){
+
+	public static BigDecimal stringToBigDecimal(String value) {
 		try {
 			return new BigDecimal(value);
 		} catch (NumberFormatException e) {
 			return BigDecimal.ZERO;
 		}
 	}
-	
+
 }

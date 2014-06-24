@@ -12,7 +12,7 @@ import com.proserus.stocks.bo.utils.PathUtils;
 
 public class DefaultCurrency {
 	private static final String EMPTY_STR = "";
-	private static final String CONFIG_PROPERTIES = PathUtils.getInstallationFolder()+"./config.properties";
+	private static final String CONFIG_PROPERTIES = PathUtils.getInstallationFolder() + "./config.properties";
 	private static final String DEFAULT = "Default";
 	private Properties ptrans = new Properties();
 
@@ -20,9 +20,9 @@ public class DefaultCurrency {
 
 	static {
 		try {
-			DEFAULT_CURRENCY = CurrencyEnum.valueOf(Currency.getInstance(Locale.getDefault()).getCurrencyCode());
+			DEFAULT_CURRENCY = CurrencyEnum.valueOfById(Currency.getInstance(Locale.getDefault()).getCurrencyCode());
 		} catch (IllegalArgumentException e) {
-			DEFAULT_CURRENCY = CurrencyEnum.USD;
+			DEFAULT_CURRENCY = CurrencyEnum.UNITED_STATES;
 		}
 	}
 
@@ -38,14 +38,14 @@ public class DefaultCurrency {
 		}
 		String cur = ptrans.getProperty(DEFAULT);
 		if (cur != null) {
-			setDefault(CurrencyEnum.valueOf(cur));
+			setDefault(CurrencyEnum.valueOfById(cur));
 		} else {
 			setDefault(DEFAULT_CURRENCY);
 		}
 	}
 
 	public void setDefault(CurrencyEnum cur) {
-		ptrans.setProperty(DEFAULT, cur.name());
+		ptrans.setProperty(DEFAULT, cur.getId());
 		DEFAULT_CURRENCY = cur;
 	}
 
