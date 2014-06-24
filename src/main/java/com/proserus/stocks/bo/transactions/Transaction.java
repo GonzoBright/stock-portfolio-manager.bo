@@ -1,24 +1,21 @@
 package com.proserus.stocks.bo.transactions;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Collection;
-import java.util.Date;
-
-import org.joda.time.DateTime;
 
 import com.proserus.stocks.bo.symbols.Symbol;
 
 public interface Transaction {
 
 	public static String IN_LABELS = "in elements(t.labels)";
-	//TODO Maybe the same label can be set twice 
+
+	// TODO Maybe the same label can be set twice
 	public abstract void addLabel(Label label);
 
 	public abstract BigDecimal getCommission();
 
-	public abstract Date getDate();
-
-	public abstract DateTime getDateTime();
+	public abstract Calendar getCalendar();
 
 	public abstract Integer getId();
 
@@ -36,12 +33,10 @@ public interface Transaction {
 
 	public abstract void setCommission(BigDecimal commission);
 
-	public abstract void setDate(Date date);
+	public abstract void setCalendar(Calendar calendar);
 
-	public abstract void setDateTime(DateTime date);
-
-	//TODO Maybe the same label can be set twice
-	//When removing labels.. we need to remove the transaction link too...
+	// TODO Maybe the same label can be set twice
+	// When removing labels.. we need to remove the transaction link too...
 	public abstract void setLabels(Collection<Label> labels);
 
 	public abstract void setPrice(BigDecimal price);
