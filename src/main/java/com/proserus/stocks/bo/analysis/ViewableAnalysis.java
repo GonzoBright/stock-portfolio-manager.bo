@@ -1,6 +1,7 @@
 package com.proserus.stocks.bo.analysis;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 public interface ViewableAnalysis {
 	BigDecimal getMarketValue();
@@ -19,8 +20,10 @@ public interface ViewableAnalysis {
 
 	BigDecimal getQuantity();
 
+	BigDecimal getQuantityBuy();
+
 	BigDecimal getTotalCost();
-	
+
 	BigDecimal getCostBasis();
 
 	BigDecimal getCommission();
@@ -30,6 +33,15 @@ public interface ViewableAnalysis {
 	BigDecimal getAnnualizedReturn();
 
 	BigDecimal getNumberOfYears();
-	
+
 	String getSnapshot();
+
+	BigDecimal getTotalSold();
+
+	BigDecimal getQuantitySold();
+
+	Calendar getStartOfPeriod();
+
+	Calendar getEndOfPeriod();
+
 }
