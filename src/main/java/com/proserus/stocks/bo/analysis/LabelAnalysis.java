@@ -7,7 +7,7 @@ import com.proserus.stocks.bo.transactions.Label;
 public interface LabelAnalysis {
 
 	Label getLabel();
-	
+
 	BigDecimal getMarketValue();
-	
+
 }

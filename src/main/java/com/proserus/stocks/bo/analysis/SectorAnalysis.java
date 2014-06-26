@@ -7,7 +7,7 @@ import com.proserus.stocks.bo.symbols.SectorEnum;
 public interface SectorAnalysis {
 
 	SectorEnum getSector();
-	
+
 	BigDecimal getMarketValue();
-	
+
 }

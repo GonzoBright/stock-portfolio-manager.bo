@@ -8,7 +8,7 @@ public interface Label extends Comparable<Label> {
 
 	public abstract void setTransactions(Collection<Transaction> transactions);
 
-	//TODO Maybe the same transaction is set...
+	// TODO Maybe the same transaction is set...
 	public abstract void addTransaction(Transaction t);
 
 	public abstract void removeTransaction(Transaction t);
