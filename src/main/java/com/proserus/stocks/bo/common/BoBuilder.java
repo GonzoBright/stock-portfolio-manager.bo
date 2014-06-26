@@ -7,8 +7,12 @@ import com.proserus.stocks.bo.transactions.Transaction;
 
 public interface BoBuilder {
 	public Transaction getTransaction();
+
 	public Symbol getSymbol();
+
 	public Label getLabel();
+
 	public HistoricalPrice getHistoricalPrice();
+
 	public DBVersion getVersion();
 }

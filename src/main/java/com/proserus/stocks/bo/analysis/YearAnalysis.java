@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public interface YearAnalysis {
 
 	int getYear();
-	
+
 	BigDecimal getOverallReturn();
-	
+
 }
