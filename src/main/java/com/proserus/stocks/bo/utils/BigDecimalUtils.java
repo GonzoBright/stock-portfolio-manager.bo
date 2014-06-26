@@ -3,13 +3,15 @@ package com.proserus.stocks.bo.utils;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class BigDecimalUtils {
 
 	public static BigDecimal HUNDRED = new BigDecimal(100);
 
 	static public BigDecimal setDecimalWithScale(BigDecimal value) {
 		// TODO Should we let the view display the complete numbers ??
-		return value != null ? value.setScale(5, RoundingMode.HALF_EVEN) : null;
+		return value != null ? value.setScale(8, RoundingMode.HALF_EVEN) : null;
 	}
 
 	static public boolean isPositive(BigDecimal value) {
@@ -36,4 +38,13 @@ public class BigDecimalUtils {
 		}
 	}
 
+	public static String formatNumber(String no) {
+		no = no.replace(",", ".");
+		if (no.contains(".") && no.endsWith("0")) {
+			while (!no.endsWith(".") && no.endsWith("0")) {
+				no = StringUtils.removeEnd(no, "0");
+			}
+		}
+		return no;
+	}
 }
