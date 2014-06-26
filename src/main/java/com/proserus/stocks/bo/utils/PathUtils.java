@@ -3,13 +3,8 @@ package com.proserus.stocks.bo.utils;
 import java.io.File;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PathUtils {
-	// TODO this is sketchy...
-	// Cannot be static, to ensure path is resolve before log4j
-	private Logger LOGGER = LoggerFactory.getLogger(PathUtils.class.getName());
 	private static String installationFolder;
 	private static String absolutePath;
 	static {
