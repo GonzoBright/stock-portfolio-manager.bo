@@ -54,7 +54,7 @@ public abstract class PersistentEnumUserType<T extends PersistentEnum<?>> implem
 				return value;
 			}
 		}
-		throw new IllegalStateException("Unknown " + returnedClass().getSimpleName() + " id");
+		throw new IllegalStateException("Unknown " + returnedClass().getSimpleName() + " id: " + id);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public abstract class PersistentEnumUserType<T extends PersistentEnum<?>> implem
 
 	@Override
 	public int[] sqlTypes() {
-		return new int[] { Types.INTEGER };
+		return new int[] { Types.VARCHAR };
 	}
 
 }
