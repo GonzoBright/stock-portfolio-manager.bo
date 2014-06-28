@@ -27,7 +27,7 @@ public enum CurrencyEnum implements PersistentEnum<CurrencyEnum> {
 	SAUDI_ARABIA("SAR", "SAR", "images/za.png"), //
 	UNITED_STATES("USD", "USD", "images/us.png"), //
 	KOREA("WON", "WON", "images/kr.png"), //
-	ERROR("ERR", "Error", "Error", Usage.INTERNAL);// s
+	ERROR("ERROR", "Error", "Error", Usage.INTERNAL);// s
 
 	private ImageIcon icon = null;
 	private Usage usage;
