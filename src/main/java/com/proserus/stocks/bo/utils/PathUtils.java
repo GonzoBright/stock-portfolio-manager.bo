@@ -8,7 +8,7 @@ public class PathUtils {
 	private static String installationFolder;
 	private static String absolutePath;
 	static {
-		installationFolder = PathUtils.class.getClassLoader().getResource(".").getPath();
+		installationFolder = new File(".").getAbsolutePath();
 		installationFolder = StringUtils.removeEnd(installationFolder, "/");
 		installationFolder = StringUtils.removeEnd(installationFolder, "\\");
 		installationFolder = StringUtils.removeEnd(installationFolder, "target/classes");
@@ -22,6 +22,7 @@ public class PathUtils {
 	}
 
 	public static String getInstallationFolder() {
+		System.out.println(installationFolder);
 		return installationFolder;
 	}
 

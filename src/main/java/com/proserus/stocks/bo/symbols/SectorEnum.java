@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.Validate;
@@ -26,7 +27,14 @@ public enum SectorEnum implements Comparable<SectorEnum>, PersistentEnum<SectorE
 	UTILITIES("UTILITIES", "utilities"), //
 	OTHER("OTHER", "other");//
 
-	private static final ResourceBundle sectors = ResourceBundle.getBundle("sectors");
+	private static ResourceBundle sectors = null;
+	static {
+		try {
+			sectors = ResourceBundle.getBundle("sectors");
+		} catch (MissingResourceException e) {
+
+		}
+	}
 	private static final List<SectorEnum> sortedSectors;
 
 	static {
@@ -54,7 +62,7 @@ public enum SectorEnum implements Comparable<SectorEnum>, PersistentEnum<SectorE
 	}
 
 	public String getTitle() {
-		return sectors.getString(title);
+		return sectors != null ? sectors.getString(title) : title;
 	}
 
 	@Override
