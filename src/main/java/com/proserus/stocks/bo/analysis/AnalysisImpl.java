@@ -281,7 +281,7 @@ public class AnalysisImpl implements Analysis {
 		sb.append(", CapGainPrc:" + BigDecimalUtils.setDecimalWithScale(capitalGainPercent));
 		sb.append(", Comm:" + BigDecimalUtils.setDecimalWithScale(commission));
 		sb.append(", Cost:" + BigDecimalUtils.setDecimalWithScale(totalCost));
-		sb.append(", Cur:" + (currency != null ? currency : null));
+		sb.append(", Cur:" + (currency != null ? currency.getTitle() : null));
 		sb.append(", Div:" + BigDecimalUtils.setDecimalWithScale(dividend));
 		sb.append(", DivYld:" + BigDecimalUtils.setDecimalWithScale(dividendYield));
 		sb.append(", Dur:" + BigDecimalUtils.setDecimalWithScale(duration));
