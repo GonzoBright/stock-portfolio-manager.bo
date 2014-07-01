@@ -38,10 +38,14 @@ public class BigDecimalUtils {
 		}
 	}
 
-	public static String formatNumber(String no) {
+	public static String formatNumberForDouble(String no) {
 		no = no.replace(",", ".");
-		if (no.contains(".") && no.endsWith("0")) {
-			while (!no.endsWith(".") && no.endsWith("0")) {
+		return formatNumberForDisplay(no);
+	}
+
+	public static String formatNumberForDisplay(String no) {
+		if ((no.contains(".") || no.contains(",")) && no.endsWith("0")) {
+			while (!no.endsWith(".") && !no.endsWith(",") && no.endsWith("0")) {
 				no = StringUtils.removeEnd(no, "0");
 			}
 		}

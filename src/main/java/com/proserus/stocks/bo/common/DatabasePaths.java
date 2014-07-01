@@ -15,19 +15,19 @@ public class DatabasePaths {
 	private String osCurrentFolder;
 	private Database selectedDatabase;
 
-	public String getBinaryCurrentFolder() {
+	public String getInstallationFolder() {
 		return binaryCurrentFolder;
 	}
 
-	public void setBinaryCurrentFolder(String binaryCurrentFolder) {
+	public void setInstallationFolder(String binaryCurrentFolder) {
 		this.binaryCurrentFolder = binaryCurrentFolder;
 	}
 
-	public String getOsCurrentFolder() {
+	public String getCurrentFolder() {
 		return osCurrentFolder;
 	}
 
-	public void setOsCurrentFolder(String osCurrentFolder) {
+	public void setCurrentFolder(String osCurrentFolder) {
 		this.osCurrentFolder = osCurrentFolder;
 	}
 
