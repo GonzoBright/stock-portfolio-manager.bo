@@ -1,0 +1,21 @@
+	jar.doFirst {
+		baseName = 'stock-portfolio-manager.bo'
+	}
+    dependencies {
+       dependencies {
+		    testCompile libraries.joda
+		    compile libraries.hibernate
+		    compile libraries.log4j
+		    compile libraries.apache
+		    compile libraries.jfree
+		}
+    }
+    
+    jar.doFirst {
+	    manifest {
+	    	attributes("Created-By": "Gradle",
+	        		"Class-Path": configurations.compile.collect { it.getName() }.join(' ')
+	        	)
+	    }
+	}
+    
